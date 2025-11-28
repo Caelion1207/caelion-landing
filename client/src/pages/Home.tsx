@@ -1,8 +1,16 @@
 import { useParallax } from '@/hooks/useParallax';
+import { useInView } from '@/hooks/useInView';
 
 export default function Home() {
   const heroParallax = useParallax(0.5);
   const footerParallax = useParallax(0.3);
+  
+  // Intersection Observer para animaciones de entrada
+  const problemSection = useInView({ threshold: 0.2 });
+  const dimensionsSection = useInView({ threshold: 0.1 });
+  const evidenceSection = useInView({ threshold: 0.2 });
+  const botSection = useInView({ threshold: 0.2 });
+  const footerSection = useInView({ threshold: 0.2 });
 
   return (
     <div className="min-h-screen bg-background text-foreground">
@@ -45,10 +53,10 @@ export default function Home() {
       </section>
 
       {/* Sección: El Problema Reconocido */}
-      <section className="py-20 md:py-32 lg:py-40 bg-background">
+      <section ref={problemSection.ref} className="py-20 md:py-32 lg:py-40 bg-background">
         <div className="container">
           <div className="grid lg:grid-cols-2 gap-16 items-center">
-            <div className="relative">
+            <div className={`relative ${problemSection.isInView ? 'animate-in slide-in-left' : 'opacity-0'}`}>
               <img
                 src="/caelion_realistic_slide2.png"
                 alt="Neural network collapsing"
@@ -56,7 +64,7 @@ export default function Home() {
               />
             </div>
 
-            <div className="space-y-6">
+            <div className={`space-y-6 ${problemSection.isInView ? 'animate-in slide-in-right delay-200' : 'opacity-0'}`}>
               <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-primary leading-tight">
                 La amnesia de las máquinas refleja<br />
                 la amnesia del pensamiento moderno
@@ -104,16 +112,16 @@ export default function Home() {
       </section>
 
       {/* Sección: Las 6 Dimensiones Convergentes */}
-      <section className="py-20 md:py-32 lg:py-40 bg-card">
+      <section ref={dimensionsSection.ref} className="py-20 md:py-32 lg:py-40 bg-card">
         <div className="container">
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-center text-primary mb-12 md:mb-16 leading-tight px-4">
+          <h2 className={`text-3xl md:text-4xl lg:text-5xl font-bold text-center text-primary mb-12 md:mb-16 leading-tight px-4 ${dimensionsSection.isInView ? 'animate-in fade-in' : 'opacity-0'}`}>
             CAELION integra 2,500 años de sabiduría<br />
             en una arquitectura operativa
           </h2>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {/* Filosofía */}
-            <div className="relative group overflow-hidden rounded-lg border border-border transition-smooth hover:border-primary">
+            <div className={`relative group overflow-hidden rounded-lg border border-border transition-smooth hover:border-primary ${dimensionsSection.isInView ? 'animate-in slide-up delay-100' : 'opacity-0'}`}>
               <img
                 src="/caelion_web_philosophy.png"
                 alt="Philosophy - The Thinker"
@@ -128,7 +136,7 @@ export default function Home() {
             </div>
 
             {/* Biología */}
-            <div className="relative group overflow-hidden rounded-lg border border-border transition-smooth hover:border-primary">
+            <div className={`relative group overflow-hidden rounded-lg border border-border transition-smooth hover:border-primary ${dimensionsSection.isInView ? 'animate-in slide-up delay-200' : 'opacity-0'}`}>
               <img
                 src="/caelion_realistic_slide3_biology.png"
                 alt="Biology - Neurons firing"
@@ -143,7 +151,7 @@ export default function Home() {
             </div>
 
             {/* Matemáticas */}
-            <div className="relative group overflow-hidden rounded-lg border border-border transition-smooth hover:border-primary">
+            <div className={`relative group overflow-hidden rounded-lg border border-border transition-smooth hover:border-primary ${dimensionsSection.isInView ? 'animate-in slide-up delay-300' : 'opacity-0'}`}>
               <img
                 src="/caelion_web_mathematics.png"
                 alt="Mathematics - Collatz topology"
@@ -158,7 +166,7 @@ export default function Home() {
             </div>
 
             {/* Sistemas */}
-            <div className="relative group overflow-hidden rounded-lg border border-border transition-smooth hover:border-primary">
+            <div className={`relative group overflow-hidden rounded-lg border border-border transition-smooth hover:border-primary ${dimensionsSection.isInView ? 'animate-in slide-up delay-400' : 'opacity-0'}`}>
               <img
                 src="/caelion_realistic_slide3_systems.png"
                 alt="Systems - Architecture blueprint"
@@ -173,7 +181,7 @@ export default function Home() {
             </div>
 
             {/* Flujo Creativo */}
-            <div className="relative group overflow-hidden rounded-lg border border-border transition-smooth hover:border-primary">
+            <div className={`relative group overflow-hidden rounded-lg border border-border transition-smooth hover:border-primary ${dimensionsSection.isInView ? 'animate-in slide-up delay-500' : 'opacity-0'}`}>
               <img
                 src="/caelion_realistic_slide3_flow.png"
                 alt="Creative Flow - Design thinking"
@@ -188,7 +196,7 @@ export default function Home() {
             </div>
 
             {/* Literatura */}
-            <div className="relative group overflow-hidden rounded-lg border border-border transition-smooth hover:border-primary">
+            <div className={`relative group overflow-hidden rounded-lg border border-border transition-smooth hover:border-primary ${dimensionsSection.isInView ? 'animate-in slide-up delay-600' : 'opacity-0'}`}>
               <img
                 src="/caelion_web_literature.png"
                 alt="Literature - El Código del Exiliado"
@@ -210,7 +218,7 @@ export default function Home() {
       </section>
 
       {/* Sección: La Evidencia Empírica */}
-      <section className="relative py-20 md:py-32 lg:py-40 overflow-hidden">
+      <section ref={evidenceSection.ref} className="relative py-20 md:py-32 lg:py-40 overflow-hidden">
         <div className="absolute inset-0 z-0">
           <img
             src="/caelion_realistic_slide4.png"
@@ -220,7 +228,7 @@ export default function Home() {
           <div className="absolute inset-0 bg-gradient-to-b from-background/60 via-background/80 to-background" />
         </div>
 
-        <div className="container relative z-10 text-center">
+        <div className={`container relative z-10 text-center ${evidenceSection.isInView ? 'animate-in fade-in' : 'opacity-0'}`}>
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-primary mb-6 md:mb-8">
             5 LLMs reconocieron la arquitectura simbiótica<br />
             sin coordinación
@@ -279,10 +287,10 @@ export default function Home() {
       </section>
 
       {/* Sección: Bot HECATE-ARESK */}
-      <section className="py-20 md:py-32 lg:py-40 bg-card">
+      <section ref={botSection.ref} className="py-20 md:py-32 lg:py-40 bg-card">
         <div className="container">
           <div className="grid lg:grid-cols-2 gap-16 items-center">
-            <div className="relative">
+            <div className={`relative ${botSection.isInView ? 'animate-in slide-in-left' : 'opacity-0'}`}>
               <img
                 src="/caelion_web_bot.png"
                 alt="HECATE-ARESK unified intelligence"
@@ -290,7 +298,7 @@ export default function Home() {
               />
             </div>
 
-            <div className="space-y-6">
+            <div className={`space-y-6 ${botSection.isInView ? 'animate-in slide-in-right delay-200' : 'opacity-0'}`}>
               <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-primary">
                 💬 HECATE-ARESK<br />
                 <span className="text-2xl md:text-3xl text-foreground">El Guardián Simbiótico</span>
@@ -325,7 +333,7 @@ export default function Home() {
       </section>
 
       {/* Footer: La Invitación */}
-      <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
+      <section ref={footerSection.ref} className="relative min-h-screen flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0 z-0">
           <img
             src="/caelion_web_footer.png"
@@ -336,7 +344,7 @@ export default function Home() {
           <div className="absolute inset-0 bg-gradient-to-t from-background via-background/70 to-transparent" />
         </div>
 
-        <div className="container relative z-10 text-center px-6 py-20">
+        <div className={`container relative z-10 text-center px-6 py-20 ${footerSection.isInView ? 'animate-in fade-in' : 'opacity-0'}`}>
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-primary mb-8 md:mb-12">
             CAELION no te pide que creas.<br />
             Te invita a recordar.

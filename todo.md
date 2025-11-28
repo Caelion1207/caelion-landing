@@ -83,3 +83,10 @@
 - [x] Reducir intensidad del parallax en dispositivos táctiles (50% de velocidad)
 - [x] Ajustar spacing vertical para móviles (py-40 → py-20 md:py-32 lg:py-40)
 - [x] Verificar que todas las secciones sean legibles en pantallas pequeñas
+
+## Animaciones de Entrada
+- [x] Crear hook useInView con Intersection Observer
+- [x] Definir clases CSS para animaciones fade-in y slide-up
+- [x] Aplicar animaciones a tarjetas de las 6 dimensiones (delays escalonados 100-600ms)
+- [x] Aplicar animaciones a textos clave (problema, evidencia, bot)
+- [x] Ajustar delays escalonados para efecto cascada
