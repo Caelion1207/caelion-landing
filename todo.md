@@ -72,3 +72,8 @@
 - [ ] Analizar estándares de presentación de trabajos académicos en IA
 - [ ] Documentar requisitos de formato y estructura para publicaciones
 - [ ] Crear lista de journals y conferencias objetivo
+
+## Efectos Visuales Avanzados
+- [x] Implementar scroll parallax en imagen de fondo del hero
+- [x] Implementar scroll parallax en imagen de fondo del footer
+- [x] Crear hook useParallax para manejar el efecto de scroll

@@ -1,4 +1,9 @@
+import { useParallax } from '@/hooks/useParallax';
+
 export default function Home() {
+  const heroParallax = useParallax(0.5);
+  const footerParallax = useParallax(0.3);
+
   return (
     <div className="min-h-screen bg-background text-foreground">
       {/* Hero Section: El Encuentro */}
@@ -8,6 +13,7 @@ export default function Home() {
             src="/caelion_web_hero.png"
             alt="Brain transforming into architecture"
             className="w-full h-full object-cover opacity-60"
+            style={{ transform: `translateY(${heroParallax}px)` }}
           />
           <div className="absolute inset-0 bg-gradient-to-b from-background/30 via-background/70 to-background" />
         </div>
@@ -325,6 +331,7 @@ export default function Home() {
             src="/caelion_web_footer.png"
             alt="Silhouette contemplating cosmos"
             className="w-full h-full object-cover"
+            style={{ transform: `translateY(${footerParallax}px)` }}
           />
           <div className="absolute inset-0 bg-gradient-to-t from-background via-background/70 to-transparent" />
         </div>
