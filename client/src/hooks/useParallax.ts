@@ -9,9 +9,15 @@ export function useParallax(speed: number = 0.5) {
   const [offset, setOffset] = useState(0);
 
   useEffect(() => {
+    // Detectar si es dispositivo táctil
+    const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+    
+    // Reducir velocidad del parallax en dispositivos móviles (50% de la velocidad)
+    const adjustedSpeed = isTouchDevice ? speed * 0.5 : speed;
+
     const handleScroll = () => {
       const scrollY = window.scrollY;
-      setOffset(scrollY * speed);
+      setOffset(scrollY * adjustedSpeed);
     };
 
     // Inicializar con el scroll actual

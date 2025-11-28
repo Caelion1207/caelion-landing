@@ -77,3 +77,9 @@
 - [x] Implementar scroll parallax en imagen de fondo del hero
 - [x] Implementar scroll parallax en imagen de fondo del footer
 - [x] Crear hook useParallax para manejar el efecto de scroll
+
+## Optimización Móvil
+- [x] Ajustar tamaños de fuente responsivos (hero text-9xl → text-5xl en móvil)
+- [x] Reducir intensidad del parallax en dispositivos táctiles (50% de velocidad)
+- [x] Ajustar spacing vertical para móviles (py-40 → py-20 md:py-32 lg:py-40)
+- [x] Verificar que todas las secciones sean legibles en pantallas pequeñas
